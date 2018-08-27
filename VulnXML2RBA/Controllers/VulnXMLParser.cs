@@ -69,10 +69,10 @@ namespace VulnXML2Nessus.Controllers
 
                 // This will break when dnsname is not found - so will not populate custom Affected Hosts issues
 
-                parseHost.Name = (string)host.Attribute("dnsname");
+                parseHost.Name = (string)host.Attribute("ipv4");
                 if (string.IsNullOrEmpty(parseHost.Name))
                 {
-                    continue;
+                    parseHost.Name = (string)host.Attribute("name");
                 }
 
                 // For each vuln assigned to host
@@ -121,7 +121,7 @@ namespace VulnXML2Nessus.Controllers
                 parseResultsHostProperties.IPv4 = (string)host.Attribute("ipv4");
                 parseHost.Properties = parseResultsHostProperties;
 
-                if (!string.IsNullOrEmpty(parseHost.Properties.IPv4))
+                if (!string.IsNullOrEmpty(parseHost.Name))
                 {
                     parseResults.Hosts.Add(parseHost);
                 }

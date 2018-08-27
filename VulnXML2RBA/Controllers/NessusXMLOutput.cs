@@ -36,13 +36,13 @@ namespace VulnXML2Nessus.Controllers
                 XmlNode nameRDNS = doc.CreateAttribute("host-rdns");
                 XmlNode nameIP = doc.CreateAttribute("host-ip");
 
-                nameHost.Value = host.Properties.IPv4;
+                nameHost.Value = host.Name;
                 
                 reportHost.Attributes.SetNamedItem(nameHost);
                 tag1.Attributes.SetNamedItem(nameRDNS);
                 tag2.Attributes.SetNamedItem(nameIP);
 
-                tag1.InnerText = host.Properties.DnsName;
+                tag1.InnerText = host.Name;
                 tag2.InnerText = host.Properties.IPv4;
 
                 report.AppendChild(reportHost);
